@@ -1,0 +1,10 @@
+<!-- hotel/templates/hotel/create_order.html -->
+{% extends 'base_generic.html' %}
+{% block content %}
+  <h2>Create Order</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+  </form>
+{% endblock %}

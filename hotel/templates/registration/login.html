@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="">
+        <title>Вход</title>
+        <style>
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .login {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+            }
+            .login h2 {
+                text-align: center;
+            }
+            .fieldWrapper {
+                margin-bottom: 15px;
+            }
+            .fieldWrapper label {
+                display: block;
+                margin-bottom: 5px;
+                color: #555;
+            }
+            .fieldWrapper input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login">
+            <h2>Вход</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.username.errors }}
+                    <label for="{{ form.username.id_for_label }}">Логин:</label>
+                    {{ form.username }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.password.errors }}
+                    <label for="{{ form.password.id_for_label }}">Пароль:</label>
+                    {{ form.password }}
+                </div>
+                <button type="submit">Войти</button>
+            </form>
+        </div>
+    </body>
+</html>

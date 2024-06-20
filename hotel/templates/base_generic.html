@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Management System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: wheat;
+            padding: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    {% if user.role == 'manager' %}
+                        <li><a href="{% url 'register_user' %}">Register User</a></li>
+                        <li><a href="{% url 'view_orders' %}">View Orders</a></li>
+                        <li><a href="{% url 'assign_shift' %}">Assign Shift</a></li>
+                        <li><a href="{% url 'view_shifts' %}">View Shifts</a></li>
+                    {% elif user.role == 'room_service' %}
+                        <li><a href="{% url 'create_order' %}">Create Order</a></li>
+                    {% elif user.role == 'hotel_service' %}
+                        <li><a href="{% url 'view_orders' %}">View Orders</a></li>
+                    {% endif %}
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
