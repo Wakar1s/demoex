@@ -1,10 +1,9 @@
-<!-- hotel/templates/hotel/assign_shift.html -->
 {% extends 'base_generic.html' %}
 {% block content %}
-  <h2>Assign Shift</h2>
+  <h2>Изменение смен</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Assign Shift</button>
+    <button type="submit">Изменить</button>
   </form>
 {% endblock %}

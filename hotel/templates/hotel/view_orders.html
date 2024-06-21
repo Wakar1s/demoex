@@ -1,7 +1,6 @@
-<!-- hotel/templates/hotel/view_orders.html -->
 {% extends 'base_generic.html' %}
 {% block content %}
-  <h2>Orders</h2>
+  <h2>Заказы</h2>
   <ul>
     {% for order in orders %}
       <li>{{ order.details }} - {{ order.status }}</li>

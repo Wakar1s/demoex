@@ -3,28 +3,28 @@ from django.db import models
 
 class User(AbstractUser):
     ROLE_CHOICES = (
-        ('manager', 'Manager'),
-        ('room_service', 'Room Service Employee'),
-        ('hotel_service', 'Hotel Service Provider'),
+        ('менеджер', 'Менеджер'),
+        ('сотрудник_обслуживания_номеров', 'Сотрудник обслуживания номеров'),
+        ('сотрудник_предоставления_услуг', 'Сотрудник предоставления услуг отеля'),
     )
     STATUS_CHOICES = (
-        ('active', 'Active'),
-        ('dismissed', 'Dismissed'),
+        ('работает', 'Работает'),
+        ('уволен', 'Уволен'),
     )
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     father_name = models.CharField(max_length=30, default='-')
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='работает')
 
 class Order(models.Model):
     STATUS_CHOICES = (
-        ('preparing', 'Preparing'),
-        ('ready', 'Ready'),
+        ('в_процессе', 'В процессе'),
+        ('готов', 'Готов'),
     )
     PAYMENT_STATUS_CHOICES = (
-        ('accepted', 'Accepted'),
-        ('paid', 'Paid'),
+        ('принят', 'Принят'),
+        ('оплачен', 'Оплачен'),
     )
     created_by = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='preparing')

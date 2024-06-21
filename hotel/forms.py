@@ -21,7 +21,7 @@ class ShiftAssignmentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['user'].queryset = User.objects.filter(role__in=['room_service', 'hotel_service'], status='active')
+        self.fields['user'].queryset = User.objects.filter(role__in=['room_service', 'hotel_service'], status='работает')
 
 
 class UserRegistrationForm(UserCreationForm):

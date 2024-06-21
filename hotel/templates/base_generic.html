@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hotel Management System</title>
+    <title>Мини-отель</title>
     <style>
         body {
             margin: 0;
@@ -36,26 +36,26 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'home' %}">Домой</a></li>
                 {% if user.is_authenticated %}
                     {% if user.role == 'manager' %}
-                        <li><a href="{% url 'register_user' %}">Register User</a></li>
-                        <li><a href="{% url 'view_orders' %}">View Orders</a></li>
-                        <li><a href="{% url 'assign_shift' %}">Assign Shift</a></li>
-                        <li><a href="{% url 'view_shifts' %}">View Shifts</a></li>
+                        <li><a href="{% url 'register_user' %}">Регистрация пользователя</a></li>
+                        <li><a href="{% url 'view_orders' %}">Просмотр заказов</a></li>
+                        <li><a href="{% url 'assign_shift' %}">Изменение смен</a></li>
+                        <li><a href="{% url 'view_shifts' %}">Просмотр смен</a></li>
                     {% elif user.role == 'room_service' %}
-                        <li><a href="{% url 'create_order' %}">Create Order</a></li>
+                        <li><a href="{% url 'create_order' %}">Создать заказ</a></li>
                     {% elif user.role == 'hotel_service' %}
-                        <li><a href="{% url 'view_orders' %}">View Orders</a></li>
+                        <li><a href="{% url 'view_orders' %}">Просмотр заказов</a></li>
                     {% endif %}
                     <li>
                         <form action="{% url 'logout' %}" method="post" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Logout</button>
+                            <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer;">Выйти</button>
                         </form>
                     </li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'login' %}">Логин</a></li>
                 {% endif %}
             </ul>
         </nav>

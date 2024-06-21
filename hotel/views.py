@@ -83,3 +83,8 @@ def change_order_status(request, order_id, status):
 @login_required
 def home(request):
     return render(request, 'hotel/home.html')
+
+@login_required
+def user_list(request):
+    users = User.objects.all()
+    return render(request, 'hotel/user_list.html', {'users': users})
